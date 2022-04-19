@@ -1,10 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEditor;
 using UnityEngine;
 using CustomButton;
 
-public class Transform_additional : MonoBehaviour
+public class TransformAdditional : MonoBehaviour
 {
 #if UNITY_EDITOR
     [EditorButton("ResetTransform")]
