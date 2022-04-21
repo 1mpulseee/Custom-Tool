@@ -83,7 +83,7 @@ public class HotkeyTools : MonoBehaviour
                         }
                         else
                         {
-                            Debug.LogWarning("the place for the object was not found, you may have clicked into the void, or on the selected object");
+                            Debug.LogWarning("The place for the object was not found, you may have clicked into the void, or on the selected object");
                         }
                         for (int i = 0; i < Selection.gameObjects.Length; i++)
                         {
@@ -92,7 +92,7 @@ public class HotkeyTools : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogWarning("no objects selected");
+                        Debug.LogWarning("No objects selected");
                     }
                     break;
                 case DropDown.CreateObjectAtMousePosition:
@@ -125,7 +125,7 @@ public class HotkeyTools : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogWarning("the place for the object was not found, you may have clicked into the void, or on the selected object");
+                        Debug.LogWarning("The place for the object was not found, you may have clicked into the void, or on the selected object");
                     }
                     break;
             }
@@ -138,7 +138,15 @@ public class HotkeyTools : MonoBehaviour
     [MenuItem("CustomTool/HotkeyTools/FindHotkeyTools")]
     public static void FindHotkeyTools()
     {
-        
+        List<HotkeyTools> _hotKeyTools = new List<HotkeyTools>();
+        for (int i = 0; i < FindObjectsOfType<HotkeyTools>().Length; i++) { _hotKeyTools.Add(FindObjectsOfType<HotkeyTools>()[i]); }
+        if (_hotKeyTools.Count == 0) {
+            Debug.LogError("The CustomTool could not be found");
+        }
+        if (_hotKeyTools.Count >= 2)
+        {
+            Debug.LogError("The CustomTool count must be less 2");
+        }
     }
     [MenuItem("CustomTool/HotkeyTools/Enable or Disable")]
     public static void CamToEditorView()

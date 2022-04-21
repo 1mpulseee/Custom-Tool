@@ -30,7 +30,7 @@ public class CustomTool : EditorWindow
             foreach (Material material in renderer.sharedMaterials)
             {
                 if (material.shader.name == "Standard")
-                {
+                { 
                     Debug.Log(material.shader.name, renderer);
                     found = true;
                 }
