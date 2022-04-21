@@ -1,19 +1,15 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
-using CustomButton;
-
 public class TransformAdditional : MonoBehaviour
 {
-#if UNITY_EDITOR
-    [EditorButton("ResetTransform")]
     public void ResetTransform()
     {
-        Undo.RecordObject(transform, "SetHeight");
+        Undo.RecordObject(transform, "ResetTransform");
         transform.position = Vector3.zero;
         transform.rotation = Quaternion.identity;
         transform.localScale = new Vector3(1, 1, 1);
     }
-    [EditorButton("SetHeightByCentre")]
     public void SetHeightByCentre()
     {
         int layer = gameObject.layer;
@@ -26,7 +22,6 @@ public class TransformAdditional : MonoBehaviour
         }
         gameObject.layer = layer;
     }
-    [EditorButton("SetHeightByScale")]
     public void SetHeightByScale()
     {
         int layer = gameObject.layer;
@@ -39,14 +34,13 @@ public class TransformAdditional : MonoBehaviour
         }
         gameObject.layer = layer;
     }
-    [EditorButton("SetHeightAndRotationByCentre")]
     public void SetHeightAndRotationByCentre()
     {
         int layer = gameObject.layer;
         gameObject.layer = 2;
         if (Physics.Raycast(transform.position + Vector3.up * 100, Vector3.down, out var hit, 20000))
         {
-            Undo.RecordObject(transform, "SetHeight");
+            Undo.RecordObject(transform, "SetHeightAndRotation");
             transform.position = hit.point;
 
             Vector3 normal = hit.normal;
@@ -57,14 +51,13 @@ public class TransformAdditional : MonoBehaviour
         }
         gameObject.layer = layer;
     }
-    [EditorButton("SetHeightAndRotationByScale")]
     public void SetHeightAndRotationByScale()
     {
         int layer = gameObject.layer;
         gameObject.layer = 2;
         if (Physics.Raycast(transform.position + Vector3.up * 100, Vector3.down, out var hit, 20000))
         {
-            Undo.RecordObject(transform, "SetHeight");
+            Undo.RecordObject(transform, "SetHeightAndRotation");
             transform.position = hit.point + new Vector3(0, transform.localScale.y / 2, 0);
 
             Vector3 normal = hit.normal;
@@ -75,5 +68,5 @@ public class TransformAdditional : MonoBehaviour
         }
         gameObject.layer = layer;
     }
-#endif
 }
+#endif

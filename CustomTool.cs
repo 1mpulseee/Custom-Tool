@@ -31,7 +31,7 @@ public class CustomTool : EditorWindow
             {
                 if (material.shader.name == "Standard")
                 {
-                    Debug.LogWarning(material.shader.name, renderer);
+                    Debug.Log(material.shader.name, renderer);
                     found = true;
                 }
             }
@@ -49,7 +49,7 @@ public class CustomTool : EditorWindow
             {
                 if (material.shader.name == "Mobile/Diffuse")
                 {
-                    Debug.LogWarning(material.shader.name, renderer);
+                    Debug.Log(material.shader.name, renderer);
                     found = true;
                 }
             }

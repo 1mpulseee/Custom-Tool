@@ -131,6 +131,15 @@ public class HotkeyTools : MonoBehaviour
             }
         }
     }
+    public void DebugThis()
+    {
+        Debug.Log("HotkeyTools");
+    }
+    [MenuItem("CustomTool/HotkeyTools/FindHotkeyTools")]
+    public static void FindHotkeyTools()
+    {
+        
+    }
     [MenuItem("CustomTool/HotkeyTools/Enable or Disable")]
     public static void CamToEditorView()
     {
