@@ -135,7 +135,7 @@ public class HotkeyTools : MonoBehaviour
     {
         Debug.Log("HotkeyTools");
     }
-    [MenuItem("CustomTool/HotkeyTools/FindHotkeyTools")]
+    [MenuItem("CustomTool/HotkeyTools/Find Hotkey Tools")]
     public static void FindHotkeyTools()
     {
         List<HotkeyTools> _hotKeyTools = new List<HotkeyTools>();
