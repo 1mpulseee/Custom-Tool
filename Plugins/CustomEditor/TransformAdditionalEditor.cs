@@ -9,7 +9,7 @@ public class TransformAdditionalEditor : Editor
     {
         GUILayout.BeginVertical("box");
         
-        GUI.backgroundColor = new Color(105, 105, 105,150)/255;
+        GUI.backgroundColor = Color.white;
         TransformAdditional Target = (TransformAdditional)target;
         var style = new GUIStyle(GUI.skin.button);
         style.normal.textColor = new Color(Color.cyan.r,Color.cyan.g,Color.cyan.b, (170/255f));
@@ -24,8 +24,8 @@ public class TransformAdditionalEditor : Editor
         GUILayout.EndHorizontal();
 
         GUILayout.Space(5);
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         GUILayout.Label("SetHeight", new GUIStyle(GUI.skin.label) { alignment = TextAnchor.MiddleCenter, fontStyle = FontStyle.Bold, fontSize = 16 });
-
         GUILayout.BeginHorizontal();
         if (GUILayout.Button("ByCentre",style ))
         {
@@ -50,7 +50,9 @@ public class TransformAdditionalEditor : Editor
         {
             Target.SetHeightAndRotationByScale();
         }
+
         GUILayout.EndHorizontal();
+        EditorGUILayout.LabelField("", GUI.skin.horizontalSlider);
         GUILayout.EndVertical();
     }
 }

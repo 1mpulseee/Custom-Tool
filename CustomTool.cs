@@ -5,23 +5,8 @@ using System.IO;
 
 public class CustomTool : EditorWindow
 {
-    [MenuItem("CustomTool/Delete player prefs")]
-    public static void DeletePlayerPrefs()
-    {
-        PlayerPrefs.DeleteAll();
-    }
-    [MenuItem("CustomTool/Take screenshot")]
-    public static void TakeScreenshot()
-    {
-        string path = "Screenshots";
-
-        Directory.CreateDirectory(path);
-
-        int i = 0;
-        while (File.Exists(path + "/" + i + ".png")) i++;
-
-        ScreenCapture.CaptureScreenshot(path + "/" + i + ".png");
-    }
+   
+    
     [MenuItem("CustomTool/Find objects with shader/standard")]
     private static void FindObjectsWithStandardShader()
     {
@@ -114,5 +99,22 @@ public class CustomTool : EditorWindow
             }
         }
         else { Debug.LogError("Objects not selected"); }
+    }
+    [MenuItem("CustomTool/Delete Player Prefs")]
+    public static void DeletePlayerPrefs()
+    {
+        PlayerPrefs.DeleteAll();
+    }
+    [MenuItem("CustomTool/Take screenshot")]
+    public static void TakeScreenshot()
+    {
+        string path = "Screenshots";
+
+        Directory.CreateDirectory(path);
+
+        int i = 0;
+        while (File.Exists(path + "/" + i + ".png")) i++;
+
+        ScreenCapture.CaptureScreenshot(path + "/" + i + ".png");
     }
 }
