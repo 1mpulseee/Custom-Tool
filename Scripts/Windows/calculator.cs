@@ -15,6 +15,13 @@ public class calculator : EditorWindow
         public string sign = "";
     }
     public List<ExpressionClass> ExpressionList = new List<ExpressionClass>();
+    public class ExpressionClassCalculate
+    {
+        public float number;
+        public string sign;
+    }
+    public List<ExpressionClassCalculate> ExpressionListCalculate = new List<ExpressionClassCalculate>();
+
     public string expression = "0";
     public string result = "0";
     void OnGUI()
@@ -44,6 +51,11 @@ public class calculator : EditorWindow
             add("3", true);
         }
 
+        if (GUILayout.Button("^", style))
+        {
+            add("^", false);
+        }
+
         GUILayout.EndHorizontal();
 
         GUILayout.BeginHorizontal();
@@ -61,6 +73,11 @@ public class calculator : EditorWindow
         if (GUILayout.Button("6", style))
         {
             add("6", true);
+        }
+
+        if (GUILayout.Button(".", style))
+        {
+            add(",", true);
         }
 
         GUILayout.EndHorizontal();
@@ -188,11 +205,71 @@ public class calculator : EditorWindow
             expression += ExpressionList[i].number;
             expression += ExpressionList[i].sign;
         }
+        ExpressionListCalculate = new List<ExpressionClassCalculate>();
+        for (int i = 0; i < ExpressionList.Count; i++)
+        {
+            ExpressionListCalculate.Add(new ExpressionClassCalculate());
+            ExpressionListCalculate[i].sign = ExpressionList[i].sign;
+            ExpressionListCalculate[i].number = (float)double.Parse(ExpressionList[i].number);
+        }
+        while (ExpressionListCalculate.Count > 1)
+        {
+            for (int i = 0; i < ExpressionListCalculate.Count - 1; i++)
+            {
+                if (ExpressionListCalculate[i].sign == "^")
+                {
+                    ExpressionListCalculate[i].number = Mathf.Pow(ExpressionListCalculate[i].number, ExpressionListCalculate[i + 1].number);
+                    ExpressionListCalculate[i].sign = ExpressionListCalculate[i + 1].sign;
+                    ExpressionListCalculate.RemoveAt(i + 1);
+                    result = ExpressionListCalculate[i].number.ToString();
+                    break;
+                }
+                if (ExpressionListCalculate[i].sign == "*")
+                {
+                    ExpressionListCalculate[i].number = ExpressionListCalculate[i].number * ExpressionListCalculate[i + 1].number;
+                    ExpressionListCalculate[i].sign = ExpressionListCalculate[i + 1].sign;
+                    ExpressionListCalculate.RemoveAt(i + 1);
+                    result = ExpressionListCalculate[i].number.ToString();
+                    break;
+                }
+                if (ExpressionListCalculate[i].sign == "/")
+                {
+                    ExpressionListCalculate[i].number = ExpressionListCalculate[i].number / ExpressionListCalculate[i + 1].number;
+                    ExpressionListCalculate[i].sign = ExpressionListCalculate[i + 1].sign;
+                    ExpressionListCalculate.RemoveAt(i + 1);
+                    result = ExpressionListCalculate[i].number.ToString();
+                    break;
+                }
+            }
+            for (int i = 0; i < ExpressionListCalculate.Count - 1; i++)
+            {
+                if (ExpressionListCalculate[i].sign == "+")
+                {
+                    ExpressionListCalculate[i].number = ExpressionListCalculate[i].number + ExpressionListCalculate[i + 1].number;
+                    ExpressionListCalculate[i].sign = ExpressionListCalculate[i + 1].sign;
+                    ExpressionListCalculate.RemoveAt(i + 1);
+                    result = ExpressionListCalculate[i].number.ToString();
+                    break;
+                }
+                if (ExpressionListCalculate[i].sign == "-")
+                {
+                    ExpressionListCalculate[i].number = ExpressionListCalculate[i].number - ExpressionListCalculate[i + 1].number;
+                    ExpressionListCalculate[i].sign = ExpressionListCalculate[i + 1].sign;
+                    ExpressionListCalculate.RemoveAt(i + 1);
+                    result = ExpressionListCalculate[i].number.ToString();
+                    break;
+                }
+                ExpressionListCalculate[i].sign = ExpressionListCalculate[i + 1].sign;
+                ExpressionListCalculate.RemoveAt(i + 1);
+                result = ExpressionListCalculate[i].number.ToString();
+            }
+        }
     }
     public void clear()
     {
         ExpressionList = new List<ExpressionClass>();
         expression = "0";
+        result = "0";
     }
     public void erase()
     {
